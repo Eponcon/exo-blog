@@ -85,7 +85,7 @@ catch(PDOException $e)
                         <a href="post.html">Post</a>
                     </li>
                     <li>
-                        <a href="contact.html">Contact</a>
+                        <a href="contact.php">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -172,12 +172,7 @@ catch(PDOException $e)
     </div>
 
     <hr>
-    
-    
-    
-    
-    
-    
+
 
     <!-- Footer -->
     <footer>

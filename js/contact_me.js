@@ -2,7 +2,7 @@
 
 $(function() {
 
-    $("#contactForm input,#contactForm textarea").jqBootstrapValidation({
+    $("#contactForm input").jqBootstrapValidation({
         preventSubmit: true,
         submitError: function($form, event, errors) {
             // additional error messages or events
@@ -10,23 +10,21 @@ $(function() {
         submitSuccess: function($form, event) {
             event.preventDefault(); // prevent default submit behaviour
             // get values from FORM
-            var name = $("input#name").val();
-            var email = $("input#email").val();
-            var phone = $("input#phone").val();
-            var message = $("textarea#message").val();
-            var firstName = name; // For Success/Failure Message
-            // Check for white space in name for Success/Fail message
-            if (firstName.indexOf(' ') >= 0) {
-                firstName = name.split(' ').slice(0, -1).join(' ');
-            }
+            var title = $("input#title").val();
+            var auteur = $("input#auteur").val();
+            var contenu = $("input#contenu").val();
+//            var firstName = name; // For Success/Failure Message
+//            // Check for white space in name for Success/Fail message
+//            if (firstName.indexOf(' ') >= 0) {
+//                firstName = name.split(' ').slice(0, -1).join(' ');
+//            }
             $.ajax({
-                url: "././mail/contact_me.php",
+                url: "contact-2.php",
                 type: "POST",
                 data: {
-                    name: name,
-                    phone: phone,
-                    email: email,
-                    message: message
+                    title: title,
+                    contenu: contenu,
+                    auteur: auteur
                 },
                 cache: false,
                 success: function() {
