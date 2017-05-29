@@ -82,9 +82,6 @@ if (empty($_POST["auteur"])) {
         $conn = null; 
         
          
-
-
-    echo json_encode($error);
   }
    
 echo 'coucou';
