@@ -1,4 +1,42 @@
 <?php
+
+function dt($datetime, $full = false) {
+    $now = new DateTime;
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
+
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+
+    $string = array(
+        'y' => 'année',
+        'm' => 'mois',
+        'w' => 'semaine',
+        'd' => 'jour',
+        'h' => 'heure',
+        'i' => 'minute',
+        's' => 'seconde',
+    );
+    
+    foreach ($string as $k => &$v) {
+        
+            if ($diff->$k) {
+                if($k=="m"){
+                    $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? '' : '');
+                }else{
+                    $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+                }
+            } else {
+                unset($string[$k]);
+            }
+        
+    }
+
+    if (!$full) $string = array_slice($string, 0, 1);
+    return $string ? "il y a ".implode(', ', $string) : 'just now';
+}            
+
+
 $servername = "localhost";
 $username = "pelodie";
 $password = "pelodie@2017";
@@ -122,7 +160,7 @@ catch(PDOException $e)
                
                
                
-    <?php
+    <?php   
                 
         foreach($result as $article){
             
@@ -139,25 +177,12 @@ catch(PDOException $e)
         echo "</p></a> ";
             
         echo  "<div class='post-preview'><a href='post.html'><p class='post-meta'>";
-        echo $article['date'];
+        echo  dt($article['date']);
         echo "</p></a> ";
 
     }       
   
     ?>  
-               
-               
-                <div class="post-preview">
-                    <a href="post.html">
-                        <h2 class="post-title">
-                            Man must explore, and this is exploration at its greatest
-                        </h2>
-                        <h3 class="post-subtitle">
-                            Problems look mighty small from 150 miles up
-                        </h3>
-                    </a>
-                    <p class="post-meta">Posté par <a href="#">Start Bootstrap</a> on September 24, 2014</p>
-                </div>
                 <hr>
 
                
