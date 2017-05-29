@@ -7,7 +7,7 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=pelodie", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT * FROM billet"); 
+    $stmt = $conn->prepare("SELECT * FROM billet ORDER BY id DESC"); 
     $stmt->execute();
 
     // set the resulting array to associative
@@ -69,7 +69,7 @@ catch(PDOException $e)
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html">Garden Party</a>
+                <a class="navbar-brand" href="index.php">Garden Party</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -134,27 +134,16 @@ catch(PDOException $e)
         echo $article['contenu'];
         echo "</h3></a> ";
             
-        echo  "<div class='post-preview'><a href='post.html'><p class='post-meta'> Posted by";
+        echo  "<div class='post-preview'><a href='post.html'><p class='post-meta'> Posted by ";
         echo $article['auteur'];
         echo "</p></a> ";
             
         echo  "<div class='post-preview'><a href='post.html'><p class='post-meta'>";
         echo $article['date'];
         echo "</p></a> ";
-            
-            
-       
-                
-//        echo "</h2> 
-//                    </a>
-//                    <p class='post-meta'>Posted by <a href='#'></a></p>
-//                </div>
-//                <hr>";
+
     }       
-                        
-               
-               
-               
+  
     ?>  
                
                
