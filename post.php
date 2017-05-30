@@ -1,5 +1,80 @@
+<?php
+
+// afficher la date de manière plus sympa
+function dt($datetime, $full = false) {
+    $now = new DateTime;
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
+
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+
+    $string = array(
+        'y' => 'année',
+        'm' => 'mois',
+        'w' => 'semaine',
+        'd' => 'jour',
+        'h' => 'heure',
+        'i' => 'minute',
+        's' => 'seconde',
+    );
+    
+    foreach ($string as $k => &$v) {
+        
+            if ($diff->$k) {
+                if($k=="m"){
+                    $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? '' : '');
+                }else{
+                    $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+                }
+            } else {
+                unset($string[$k]);
+            }
+        
+    }
+
+    if (!$full) $string = array_slice($string, 0, 1);
+    return $string ? "il y a ".implode(', ', $string) : 'just now';
+}            
+
+
+
+
+// connection base de données
+
+    $id = $_GET['id']; 
+    
+
+
+$servername = "localhost";
+$username = "pelodie";
+$password = "pelodie@2017";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=pelodie", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare("SELECT * FROM billet WHERE id=$id"); 
+    $stmt->execute();
+
+    // set the resulting array to associative
+    $result = $stmt->fetchAll();
+//        echo '<pre>';
+//        print_r($result);
+//        echo '</pre>';
+    }
+catch(PDOException $e)
+    {
+    echo "Connection failed: " . $e->getMessage();
+    }
+
+
+?>
+
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr_FR">
 
 <head>
 
@@ -9,18 +84,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog - Sample Post</title>
+    <title>Garden Party</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="css/clean-blog.min.css" rel="stylesheet">
+    <link href="css/clean-blog.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800" rel="stylesheet"  >
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -42,7 +116,7 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.php">Garden party</a>
+                <a class="navbar-brand" href="index.php">Logo</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -71,9 +145,9 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>Man must explore, and this is exploration at its greatest</h1>
+                        <h1><?= $result[0]['title']; ?></h1>
                         <h2 class="subheading">Problems look mighty small from 150 miles up</h2>
-                        <span class="meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</span>
+                        <span class="meta">Posted by <a href="#"><?= $result[0]['auteur']; ?></a> <?= $result[0]['date']; ?></span>
                     </div>
                 </div>
             </div>
@@ -85,14 +159,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
+                    <p></p>
 
                  
 
 
                     <h2 class="section-heading">Reaching for the Stars</h2>
 
-                    <p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
+                
 
                     <a href="#">
                         <img class="img-responsive" src="img/post-sample-image.jpg" alt="">
@@ -142,7 +216,7 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; Your Website 2016</p>
+                    
                 </div>
             </div>
         </div>

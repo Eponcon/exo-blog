@@ -45,7 +45,7 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=pelodie", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT * FROM billet ORDER BY id DESC"); 
+    $stmt = $conn->prepare("SELECT * FROM billet ORDER BY id DESC LIMIT 5"); 
     $stmt->execute();
 
     // set the resulting array to associative
@@ -161,19 +161,19 @@ catch(PDOException $e)
                 
         foreach($result as $article){
             
-        echo  "<div class='post-preview'><a href='post.html'><h2 class='post-title'>";
+        echo  "<div class='post-preview'><a href='post.php?id=".$article['id']."'><h2 class='post-title'>";
         echo $article['title'];
         echo "</h2> </a>";
             
-        echo  "<div class='post-preview'><a href='post.html'><h3 class='post-subtitle'>";
+        echo  "<div class='post-preview'><a href='post.php'><h3 class='post-subtitle'>";
         echo $article['contenu'];
         echo "</h3></a> ";
             
-        echo  "<div class='post-preview'><a href='post.html'><p class='post-meta'> Posted by ";
+        echo  "<div class='post-preview'><a href='post.php'><p class='post-meta'> Posted by ";
         echo $article['auteur'];
         echo "</p></a> ";
             
-        echo  "<div class='post-preview'><a href='post.html'><p class='post-meta'>";
+        echo  "<div class='post-preview'><a href='post.php'><p class='post-meta'>";
         echo  dt($article['date']);
         echo "</p></a> ";
 
@@ -194,7 +194,6 @@ catch(PDOException $e)
     </div>
 
     <hr>
-
 
     <!-- Footer -->
     <footer>

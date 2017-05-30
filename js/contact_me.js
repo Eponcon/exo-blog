@@ -19,7 +19,7 @@ $(function() {
 //                firstName = name.split(' ').slice(0, -1).join(' ');
 //            }
             $.ajax({
-                url: "contact-2.php",
+                url: "../admin/contact-2.php",
                 type: "POST",
                 data: {
                     title: title,
