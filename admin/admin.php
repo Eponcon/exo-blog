@@ -78,7 +78,7 @@
                     
                     
                     
-                    <form name="sentMessage" id="contactForm" novalidate>
+                    <form name="sentMessage" id="contactForm" enctype="multipart/form-data" novalidate>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Titre</label>
@@ -86,6 +86,7 @@
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
+                       
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Contenu</label>
@@ -96,10 +97,21 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Auteur</label>
-                                <input type="name" class="form-control" placeholder="auteur" name="aut" id="auteur" required data-validation-required-message="Please enter your name.">
+                                <input type="name" class="form-control" placeholder="auteur" name="auteur" id="auteur" required >
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
+                        
+                         <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Image</label>
+                                <input type="file"  name="image" id="image" accept="image/*" >
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                 
+                        
+                   
                         <br>
                         <div id="success"></div>
                         <div class="row">

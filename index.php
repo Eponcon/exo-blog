@@ -120,7 +120,7 @@ catch(PDOException $e)
                         <a href="about.html">About</a>
                     </li>
                     <li>
-                        <a href="post.html">Post</a>
+                        <a href="post.php">Post</a>
                     </li>
                 </ul>
             </div>
@@ -165,17 +165,17 @@ catch(PDOException $e)
         echo $article['title'];
         echo "</h2> </a>";
             
-        echo  "<div class='post-preview'><a href='post.php'><h3 class='post-subtitle'>";
+        echo  "<div class='post-preview'><h3 class='post-subtitle'>";
         echo $article['contenu'];
-        echo "</h3></a> ";
+        echo "</h3>";
             
-        echo  "<div class='post-preview'><a href='post.php'><p class='post-meta'> Posted by ";
+        echo  "<div class='post-preview'><p class='post-meta'> Posted by ";
         echo $article['auteur'];
-        echo "</p></a> ";
+        echo "</p>";
             
-        echo  "<div class='post-preview'><a href='post.php'><p class='post-meta'>";
+        echo  "<div class='post-preview'><p class='post-meta'>";
         echo  dt($article['date']);
-        echo "</p></a> ";
+        echo "</p> ";
 
     }       
   
@@ -186,7 +186,7 @@ catch(PDOException $e)
                 <!-- Pager -->
                 <ul class="pager">
                     <li class="next">
-                        <a href="#">Précédents &rarr;</a>
+                        <a href="#">Précédent&rarr;</a>
                     </li>
                 </ul>
             </div>

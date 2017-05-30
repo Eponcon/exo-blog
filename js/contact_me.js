@@ -4,30 +4,33 @@ $(function() {
 
     $("#contactForm input").jqBootstrapValidation({
         preventSubmit: true,
-        submitError: function($form, event, errors) {
-            // additional error messages or events
-        },
+        
         submitSuccess: function($form, event) {
             event.preventDefault(); // prevent default submit behaviour
             // get values from FORM
+            
             var title = $("input#title").val();
             var auteur = $("input#auteur").val();
             var contenu = $("input#contenu").val();
-//            var firstName = name; // For Success/Failure Message
-//            // Check for white space in name for Success/Fail message
-//            if (firstName.indexOf(' ') >= 0) {
-//                firstName = name.split(' ').slice(0, -1).join(' ');
-//            }
+            var image = $("input#image").val();
+           
+        
+            var $form = $("form");
+            var formdata = new FormData($form[0]);
+            var data = formdata;
+            
+            
+//         
             $.ajax({
                 url: "../admin/contact-2.php",
                 type: "POST",
-                data: {
-                    title: title,
-                    contenu: contenu,
-                    auteur: auteur
-                },
+                dataType : 'json', 
+                contentType: false, 
+                processData: false,
+                data: data,
+            
                 cache: false,
-                success: function() {
+                success: function(data) {
                     // Success message
                     $('#success').html("<div class='alert alert-success'>");
                     $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
@@ -40,7 +43,7 @@ $(function() {
                     //clear all fields
                     $('#contactForm').trigger("reset");
                 },
-                error: function() {
+                error: function(data) {
                     // Fail message
                     $('#success').html("<div class='alert alert-danger'>");
                     $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
@@ -51,9 +54,6 @@ $(function() {
                     $('#contactForm').trigger("reset");
                 },
             });
-        },
-        filter: function() {
-            return $(this).is(":visible");
         },
     });
 
