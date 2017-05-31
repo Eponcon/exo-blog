@@ -41,8 +41,7 @@ function dt($datetime, $full = false) {
 
 
 // connection base de données
-
-    $id = $_GET['id']; 
+$id = $_GET['id']; 
     
 
 
@@ -169,13 +168,23 @@ catch(PDOException $e)
                 
 
                     <a href="#">
-                        <img class="img-responsive" src="" alt="">
+                        <img class="img-responsive"  alt="">
                     </a>
-                    <span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
+<!--                    <span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>-->
 
                     <p><?= $result[0]['contenu']; ?></p>
-                    <p><?= $result[0]['image']; ?></p>
-                </div>
+
+                   <?php
+//                    echo "<strong>".$titre."</strong><br>";
+// 
+//                    echo "Descriptif: ".$desc."<br>";
+                    
+                    $adr_img = $result[0]['image'];
+
+                    echo "<img src='".$adr_img."'>";
+                    ?>
+
+                                    </div>
             </div>
         </div>
     </article>

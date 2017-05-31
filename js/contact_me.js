@@ -1,13 +1,15 @@
 // Contact Form Scripts
 
+
+
+
 $(function() {
 
     $("#contactForm input").jqBootstrapValidation({
         preventSubmit: true,
         
         submitSuccess: function($form, event) {
-            event.preventDefault(); // prevent default submit behaviour
-            // get values from FORM
+            event.preventDefault(); 
             
             var title = $("input#title").val();
             var auteur = $("input#auteur").val();
@@ -19,8 +21,9 @@ $(function() {
             var formdata = new FormData($form[0]);
             var data = formdata;
             
+
+
             
-//         
             $.ajax({
                 url: "../admin/contact-2.php",
                 type: "POST",
@@ -47,7 +50,7 @@ $(function() {
                     $('#success').html("<div class='alert alert-danger'>");
                     $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                         .append("</button>");
-                    $('#success > .alert-danger').append("<strong>Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!");
+//                    $('#success > .alert-danger').append("<strong>Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!");
                     $('#success > .alert-danger').append('</div>');
                     //clear all fields
                     $('#contactForm').trigger("reset");
@@ -67,3 +70,6 @@ $(function() {
 $('#name').focus(function() {
     $('#success').html('');
 });
+
+
+

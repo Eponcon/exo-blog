@@ -51,7 +51,7 @@
 
         <!-- Page Header -->
         <!-- Set your background image for this header on the line below. -->
-        <header class="intro-header" style="background-image: url('img/plants.jpg')">
+        <header class="intro-header" style="background-image: url('img/post-bg.png')">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -78,7 +78,7 @@
                     
                     
                     
-                    <form name="sentMessage" id="contactForm" enctype="multipart/form-data" novalidate>
+                    <form name="sentMessage" id="contactForm" enctype="multipart/form-data" runat="server" novalidate>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Titre</label>
@@ -105,7 +105,8 @@
                          <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Image</label>
-                                <input type="file"  name="image" id="image" accept="image/*" >
+                                <input type="file" name="image" id="image" accept="image/*">
+                                <img id="image" src="" alt="" />
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
