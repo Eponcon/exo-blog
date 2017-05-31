@@ -28,7 +28,6 @@ $(function() {
                 contentType: false, 
                 processData: false,
                 data: data,
-            
                 cache: false,
                 success: function(data) {
                     // Success message

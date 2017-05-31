@@ -174,6 +174,7 @@ catch(PDOException $e)
                     <span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
 
                     <p><?= $result[0]['contenu']; ?></p>
+                    <p><?= $result[0]['image']; ?></p>
                 </div>
             </div>
         </div>
