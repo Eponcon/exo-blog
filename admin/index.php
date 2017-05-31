@@ -51,7 +51,7 @@
 
         <!-- Page Header -->
         <!-- Set your background image for this header on the line below. -->
-        <header class="intro-header" style="background-image: url('img/post-bg.png')">
+        <header class="intro-header" style="background-image: url('../img/post-bg.png')">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -82,7 +82,7 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Titre</label>
-                                <input type="text" class="form-control" placeholder="titre" name="title" id="title" required data-validation-required-message="Please enter your title.">
+                                <input type="text" class="form-control" placeholder="titre" name="title" id="title">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -90,14 +90,14 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Contenu</label>
-                                <input type="text" class="form-control" placeholder="contenu" name="contenu" id="contenu" required data-validation-required-message="Please fill the article.">
+                                <input type="text" class="form-control" placeholder="contenu" name="contenu" id="contenu">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Auteur</label>
-                                <input type="name" class="form-control" placeholder="auteur" name="auteur" id="auteur" required >
+                                <input type="name" class="form-control" placeholder="auteur" name="auteur" id="auteur">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -105,7 +105,8 @@
                          <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Image</label>
-                                <input type="file" name="image" id="image" accept="image/*">
+                                <input type="file" name="image" id="image" accept="image/*"> 
+                                <input type="hidden" name="MAX_FILE_SIZE" value="2097152">
                                 <img id="image" src="" alt="" />
                                 <p class="help-block text-danger"></p>
                             </div>

@@ -119,9 +119,6 @@ catch(PDOException $e)
                     <li>
                         <a href="about.html">About</a>
                     </li>
-                    <li>
-                        <a href="post.php">Post</a>
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

@@ -48,10 +48,14 @@
         
 
     }
+
+
+
+
    
 
 
-    if ($error['title'] == true  && $error['contenu'] == true && $error['auteur'] == true ){
+    if ($error['title'] == true  && $error['contenu'] == true && $error['auteur'] ){
         
          
         $servername = "localhost";
@@ -59,10 +63,6 @@
         $password = "pelodie@2017";
         $dbname = "pelodie";
         
-        
-      
-
-   
             
         try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -91,9 +91,13 @@
             $image = "image/".$idfuturpost."-".$_FILES["image"]["name"];
             $stmt->execute();
 
+                
             
-                 if ($_FILES['image']['error'] == 0){
-                    move_uploaded_file ( $_FILES["image"]["tmp_name"], "../image/".$idfuturpost."-".$_FILES["image"]["name"]);
+
+            $taille_max = 2097152;
+            
+            if ($_FILES['image']['error'] == 0 ){
+                    move_uploaded_file($_FILES["image"]["tmp_name"], "../image/".$idfuturpost."-".$_FILES["image"]["name"]);
                  }
             
              $error['bdd'] =  "New records created successfully";
@@ -101,8 +105,9 @@
         
         catch(PDOException $e)
             {
-            $error['bdd'] = "Error: " . $e->getMessage();
+                $error['bdd'] = "Error: " . $e->getMessage();
             }
+        
         $conn = null; 
         
      }
