@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Admin</title>
+        <title>Garden Party - Admin</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -56,7 +56,7 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                         <div class="page-heading">
-                            <h1>Contact Me</h1>
+                            <h1>Administrateur</h1>
                             <hr class="small">
                         </div>
                     </div>
@@ -83,6 +83,14 @@
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Titre</label>
                                 <input type="text" class="form-control" placeholder="titre" name="title" id="title">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        
+                         <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Sous-titre</label>
+                                <input type="text" class="form-control" placeholder="soustitre" name="soustitre" id="soustitre">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -118,7 +126,7 @@
                         <div id="success"></div>
                         <div class="row">
                             <div class="form-group col-xs-12">
-                                <button type="submit" class="btn btn-default">Send</button>
+                                <button type="submit" class="btn btn-default">Poster l'article</button>
                             </div>
                         </div>
                     </form>
@@ -133,32 +141,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                        <ul class="list-inline text-center">
-                            <li>
-                                <a href="#">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
+                       
                     </div>
                 </div>
             </div>

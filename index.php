@@ -1,5 +1,5 @@
 <?php
-
+// afficher la date de manière plus littérale
 function dt($datetime, $full = false) {
     $now = new DateTime;
     $ago = new DateTime($datetime);
@@ -29,13 +29,14 @@ function dt($datetime, $full = false) {
             } else {
                 unset($string[$k]);
             }
-        
     }
 
     if (!$full) $string = array_slice($string, 0, 1);
     return $string ? "il y a ".implode(', ', $string) : 'just now';
 }            
 
+
+// connection base de données
 
 $servername = "localhost";
 $username = "pelodie";
@@ -45,22 +46,14 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=pelodie", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT * FROM billet ORDER BY id DESC LIMIT 5"); 
-    $stmt->execute();
-
-    // set the resulting array to associative
-    $result = $stmt->fetchAll();
-
-    
-    
+    $stmt = $conn->query("SELECT * FROM billet ORDER BY id DESC LIMIT 9");   
     }
+
 catch(PDOException $e)
     {
     echo "Connection failed: " . $e->getMessage();
     }
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -71,37 +64,29 @@ catch(PDOException $e)
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="Blog de jardinage et déco.">
     <meta name="author" content="">
 
-    <title>Exo-Blog</title>
+    <title>Garden Party</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-    <!-- Theme CSS -->
+     <!-- Theme CSS -->
     <link href="css/clean-blog.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800" rel="stylesheet"  >
-  
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 </head>
+
 
 <body>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -126,12 +111,12 @@ catch(PDOException $e)
         <!-- /.container -->
     </nav>
 
-    <!-- Page Header -->
+    <!-- HEADER -->
     <!-- Set your background image for this header on the line below. -->
     <header class="intro-header" style="background-image: url('img/home-bg.png')">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="col-md-offset-1 col-md-10 col-md-offset-1">
                     <div class="site-heading">
                         <h1>Garden Party</h1>
                         <hr class="small">
@@ -143,43 +128,39 @@ catch(PDOException $e)
     </header>
 
     <!-- Main Content -->
-    
-    
-             
-    
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+       
                
-               
-               
+    <!-- GALLERIE IMAGE GÉNÉRER PAR LE FORMULAIRE DE POST    -->
+    
+                              
+     <div class="container-fluid">
+            <div class="row">
+                <div class=" col-md-10 col-md-offset-1">
+                    
+                    
+                                                                                         
     <?php   
                 
-        foreach($result as $article){
+        while($article = $stmt->fetch()) {
+        
+        $adr_img = $article['image'];
             
-        echo  "<div class='post-preview'><a href='post.php?id=".$article['id']."'><h2 class='post-title'>";
-        echo $article['title'];
-        echo "</h2> </a>";
-            
-        echo  "<div class='post-preview'><h3 class='post-subtitle'>";
-        echo $article['contenu'];
-        echo "</h3>";
-            
-        echo  "<div class='post-preview'><p class='post-meta'> Posted by ";
-        echo $article['auteur'];
-        echo "</p>";
-            
-        echo  "<div class='post-preview'><p class='post-meta'>";
-        echo  dt($article['date']);
-        echo "</p> ";
+       
+        echo "<a  href='post.php?id=".$article['id']."'>";
+        echo "<img class='image-post-accueil col-lg-4 col-xs-12 ' src='".$adr_img."'>";
+        echo "<div class='hover-image-accueil'>";
+        echo "</div></img></a>";
+        
 
-    }       
-  
+        }       
     ?>  
-                <hr>
-
-               
+     
+                    
+                    
+                </div>
+            </div>
+        </div> 
+      
                 <!-- Pager -->
                 <ul class="pager">
                     <li class="next">
@@ -194,35 +175,10 @@ catch(PDOException $e)
 
     <!-- Footer -->
     <footer>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
+                  
                 </div>
             </div>
         </div>

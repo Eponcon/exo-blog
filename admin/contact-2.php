@@ -72,6 +72,7 @@
             $stmt->execute();
             $result = $stmt->fetch();
             $idfuturpost = $result["id"]+1;
+          
         
             
             
@@ -89,10 +90,10 @@
             $contenu = strip_tags(htmlspecialchars($_POST["contenu"]));
             $auteur = $_POST["auteur"];
             $image = "image/".$idfuturpost."-".$_FILES["image"]["name"];
+            
             $stmt->execute();
 
                 
-            
 
             $taille_max = 2097152;
             

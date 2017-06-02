@@ -132,7 +132,7 @@ catch(PDOException $e)
     <header class="intro-header" style="background-image: url('img/post-bg.png')">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="col-lg-8 col-lg-offset-4 col-md-10 col-md-offset-1">
                     <div class="post-heading">
                         <h1><?= $result[0]['title']; ?></h1>
                         <h2 class="subheading"><?= $result[0]['soustitre']; ?></h2>
@@ -145,9 +145,9 @@ catch(PDOException $e)
 
     <!-- Post Content -->
     <article>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="col-lg-8 col-lg-offset-4 col-md-10 col-md-offset-1">
                     <p></p>
 
                  
@@ -165,9 +165,7 @@ catch(PDOException $e)
                     <p><?= $result[0]['contenu']; ?></p>
 
                    <?php
-//                    echo "<strong>".$titre."</strong><br>";
-// 
-//                    echo "Descriptif: ".$desc."<br>";
+//                   
                     
                     $adr_img = $result[0]['image'];
 
@@ -183,39 +181,7 @@ catch(PDOException $e)
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    
-                </div>
-            </div>
-        </div>
+     
     </footer>
 
     <!-- jQuery -->
